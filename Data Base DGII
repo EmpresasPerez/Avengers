@@ -1,0 +1,231 @@
+/*Base de Datos DGII*/
+CREATE DATABASE DGII	
+
+/*Tablas 606*/
+
+CREATE TABLE Tbl_Header606
+(
+	IdHeader INT NOT NULL,
+	BusinessOrPersonId VARCHAR(11),
+	FiscalPeriod VARCHAR (6),
+	TypeReport VARCHAR(8),
+	RecordQuantity VARCHAR (11),
+	CreateDate DATETIME NOT NULL,
+	ModifyDate DATETIME,
+	CreateBy VARCHAR (50) NOT NULL,
+	ModifyBy VARCHAR (50),
+	CONSTRAINT Pk_IdHeader606 PRIMARY KEY CLUSTERED (IdHeader),
+	CONSTRAINT Uq_BusinessOrPersonID_FiscalPeriod UNIQUE (BusinessOrPersonID,FiscalPeriod DESC)
+)
+
+CREATE TABLE Tbl_Body606
+(
+	IdBody606 INT NOT NULL,
+	IdHeader606 INT NOT NULL,
+	FiscalOrPersonalId VARCHAR(11),
+	TypeId INT NOT NULL,
+	TypeOfGoodsAndServicesPurchased INT NOT NULL,
+	NCF VARCHAR(13),
+	NCFOrModifiedDocument VARCHAR(13),
+	VoucherDate DATE,
+	PayDaY DATE,
+	AmountBilledInServices VARCHAR(20),
+	AmountInvoicedInGoods VARCHAR(20),
+	TotalAmountBilled VARCHAR(20),
+	ITBISBilled VARCHAR(20),
+	ITBISWithHeld VARCHAR(20),
+	ITBISSubjectToProportionaly VARCHAR(20),
+	ITBISTakenToCost VARCHAR(20),
+	ITBISForAdvance VARCHAR(20),
+	ITBISReceivedOnPurchases VARCHAR(20),
+	TypeOfWithHoldingInISR INT NOT NULL,
+	IncomeWithHoldingAmount VARCHAR(20),
+	ISRPerceivedOnPurchases VARCHAR(20),
+	OtherTaxesOrFees VARCHAR(20),
+	AmountTip VARCHAR(20),
+	WayToPay INT,
+	CONSTRAINT Pk_IdBody606 PRIMARY KEY CLUSTERED (IdBody606),
+	CONSTRAINT Fk_TypeOfGoodsAndServicesPurchased_Tbl_Body606_Tbl_TypeOfGoodsAndServicesPurchased606 FOREIGN KEY (TypeOfGoodsAndServicesPurchased) REFERENCES Tbl_TypeOfGoodsAndServicesPurchased606(IdTypeOfGoodsAndServicesPurchased),
+	CONSTRAINT Fk_TypeOfWithHoldingInISR_Tbl_Body606_Tbl_TypeOfWithHoldingInISR606 FOREIGN KEY (TypeOfWithHoldingInISR) REFERENCES Tbl_TypeOfWithHoldingInISR606(IdTypeOfWithHoldingInISR),
+	CONSTRAINT Fk_WayToPay_Tbl_Body606_Tbl_WayToPay606 FOREIGN KEY (WayToPay) REFERENCES Tbl_WayToPay606(IdWayToPay),
+	CONSTRAINT Fk_IdHeader_Tbl_Header606_Tbl_IdHeader FOREIGN KEY (IdHeader606) REFERENCES Tbl_IdHeader606(IdHeader),
+	CONSTRAINT Fk_TypeId_Tbl_Header606_Tbl_TypeId FOREIGN KEY (TypeId) REFERENCES Tbl_TypeId606(IdTypeId)
+	
+	)
+
+CREATE TABLE Tbl_TypeId606
+(
+	IdTypeId INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_TypeId606 PRIMARY KEY (IdTypeId) 
+)
+CREATE TABLE Tbl_TypeOfGoodsAndServicesPurchased606
+(
+	IdTypeOfGoodsAndServicesPurchased INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_IdTypeOfGoodsAndServicesPurchased606 PRIMARY KEY (IdTypeOfGoodsAndServicesPurchased) 
+)
+CREATE TABLE Tbl_TypeOfWithHoldingInISR606
+(
+	IdTypeOfWithHoldingInISR INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_IdTypeOfWithHoldingInISR PRIMARY KEY (IdTypeOfWithHoldingInISR) 
+)
+CREATE TABLE Tbl_WayToPay606
+(
+	IdWayToPay INT NOT NULL,
+	Name CHAR(30) NOT NULL,
+	CONSTRAINT Pk_IdWayToPay PRIMARY KEY (IdWayToPay) 
+)
+
+/*Tablas 607*/
+
+CREATE TABLE Tbl_Header607
+(
+	IdHeader INT NOT NULL,
+	BusinessOrPersonID VARCHAR(11),
+	FiscalPeriod VARCHAR (6),
+	TypeReport VARCHAR(8),
+	RecordQuantity VARCHAR (11),
+	CreateDate DATETIME NOT NULL,
+	ModifyDate DATETIME,
+	CreateBy VARCHAR (50) NOT NULL,
+	ModifyBy VARCHAR (50),
+	CONSTRAINT Pk_IdHeader607 PRIMARY KEY CLUSTERED (IdHeader),
+	CONSTRAINT Uq_BusinessOrPersonID_FiscalPeriod UNIQUE (BusinessOrPersonID,FiscalPeriod DESC)
+)
+
+CREATE TABLE Tbl_Body607
+(
+	IdBody607 INT NOT NULL,
+	IdHeader607 INT NOT NULL,
+	FiscalOrPersonalId VARCHAR(11),
+	TypeId INT NOT NULL,
+	FiscalNumberId VARCHAR (19),
+	FiscalNumberIdModified VARCHAR(19),
+	IncomeType INT,
+	VoucherDate DATE,
+	RetenctionDate DATE,
+	AmountBilled VARCHAR(20),
+	TaxInvoiced VARCHAR(20),
+	TaxWithHeldByThirdParties VARCHAR(20),
+	TaxReceived VARCHAR(20),
+	ThindPartyIncomeWithHolding VARCHAR(20),
+	IrsEarned VARCHAR(20),
+	SelectiveExciseTax VARCHAR(20),
+	OtherTaxesOrFees VARCHAR(20),
+	TipAmount VARCHAR(20),
+	Cash VARCHAR(20),
+	CheckTransferAndDeposit VARCHAR(20),
+	DebitAndCreditCard VARCHAR(20),
+	CreditSale VARCHAR(20),
+	VoucherOrGiftCertificates VARCHAR(20),
+	Barter VARCHAR(20),
+	OtherFormatOfSales VARCHAR(20),
+	CONSTRAINT Pk_IdBody607 PRIMARY KEY CLUSTERED (IdBody607),
+	CONSTRAINT Fk_IdHeader_Tbl_Header607_Tbl_IdHeader FOREIGN KEY (IdHeader607) REFERENCES Tbl_IdHeader607(IdHeader),
+	CONSTRAINT Fk_TypeId_Tbl_Body607_Tbl_TypeId607 FOREIGN KEY (TypeId) REFERENCES Tbl_TypeId607(IdTypeId),
+	CONSTRAINT Fk_IncomeType_Tbl_Body607_Tbl_IncomeType607 FOREIGN KEY (IncomeType) REFERENCES Tbl_IncomeType607(IdIncomeType)
+)
+
+CREATE TABLE Tbl_TypeId607
+(
+	IdTypeId INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_TypeId607 PRIMARY KEY (IdTypeId) 
+)
+CREATE TABLE Tbl_IncomeType607
+(
+	IdIncomeType INT NOT NULL,
+	Name CHAR(50)NOT NULL,
+	CONSTRAINT Pk_IdIncomeType607 PRIMARY KEY CLUSTERED (IdIncomeType)
+)
+
+/*Tablas 608*/
+
+CREATE TABLE Tbl_Header608
+(
+	IdHeader INT NOT NULL,
+	BusinessOrPersonID VARCHAR(11),
+	FiscalPeriod VARCHAR (6),
+	TypeReport VARCHAR(8),
+	RecordQuantity VARCHAR (11),
+	CreateDate DATETIME NOT NULL,
+	ModifyDate DATETIME,
+	CreateBy VARCHAR (50) NOT NULL,
+	ModifyBy VARCHAR (50),
+	CONSTRAINT Pk_IdHeader608 PRIMARY KEY CLUSTERED (IdHeader),
+	CONSTRAINT Uq_BusinessOrPersonID_FiscalPeriod UNIQUE (BusinessOrPersonID,FiscalPeriod DESC),
+)
+
+
+CREATE TABLE Tbl_Body608
+(
+	IdBody608 INT NOT NULL,
+	IdHeader608 INT NOT NULL,
+	TaxReceiptNumber VARCHAR(13),
+	VoucherDate DATE,
+	CancellationType INT NOT NULL,
+	CONSTRAINT Pk_IdBody608 PRIMARY KEY (IdBody608) ,
+	CONSTRAINT Fk_IdHeader_Tbl_Header608_Tbl_IdHeader FOREIGN KEY (IdHeader608) REFERENCES Tbl_IdHeader608(IdHeader),
+	CONSTRAINT Fk_CancellationType_Tbl_Body608_Tbl_IdCancellationType608 FOREIGN KEY (CancellationType) REFERENCES Tbl_IdCancellationType608(IdCancellationType)
+)
+CREATE TABLE Tbl_IdCancellationType608
+(
+	IdCancellationType INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_IdCancellationType608 PRIMARY KEY (IdCancellationType) 
+)
+
+/*Tablas 609*/
+
+CREATE TABLE Tbl_Header609
+(
+	IdHeader INT NOT NULL,
+	BusinessOrPersonID VARCHAR(11),
+	FiscalPeriod VARCHAR (6),
+	TypeReport VARCHAR(8),
+	RecordQuantity VARCHAR (11),
+	CreateDate DATETIME NOT NULL,
+	ModifyDate DATETIME,
+	CreateBy VARCHAR (50) NOT NULL,
+	ModifyBy VARCHAR (50),
+	CONSTRAINT Pk_IdHeader609 PRIMARY KEY CLUSTERED (IdHeader),
+	CONSTRAINT Uq_BusinessOrPersonID_FiscalPeriod UNIQUE (BusinessOrPersonID,FiscalPeriod DESC)
+)
+
+CREATE TABLE Tbl_Body609
+(
+	IdBody609 INT NOT NULL,
+	IdHeader609 INT NOT NULL,
+	PersonOrInstitutionName VARCHAR(25),
+	TaxIDType VARCHAR(16),
+	TaxID VARCHAR(13),
+	DestinationCountry VARCHAR(20),
+	TypeOfServicePurchased INT NOT NULL,
+	DetailOfTheServicePurchased INT NOT NULL,
+	RelatedParty VARCHAR(1),
+	DocumentNumber VARCHAR(3),
+	DocumentDate DATE,
+	AmountBilled VARCHAR(10),
+	ISRWithHoldingDate DATE,
+	PresumedIncome VARCHAR(10),
+	ISRWithHeld VARCHAR(10),
+	CONSTRAINT Pk_IdBody609 PRIMARY KEY (IdBody609),
+	CONSTRAINT Fk_IdHeader_Tbl_Header609_Tbl_IdHeader FOREIGN KEY (IdHeader609) REFERENCES Tbl_IdHeader609(IdHeader),
+    CONSTRAINT Fk_TypeOfServicePurchased_Tbl_Body609_Tbl_TypeOfServicePurchased609 FOREIGN KEY (TypeOfServicePurchased) REFERENCES Tbl_TypeOfServicePurchased609(IdTypeOfServicePurchased)
+
+)
+
+CREATE TABLE Tbl_TypeOfServicePurchased609
+(
+	IdTypeOfServicePurchased INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_IdTypeOfServicePurchased609 PRIMARY KEY (IdTypeOfServicePurchased) 
+)
+CREATE TABLE Tbl_IdDetailOfTheServicePurchased609
+(
+	IdTypeOfServicePurchased INT NOT NULL,
+	Name CHAR(50) NOT NULL,
+	CONSTRAINT Pk_IdDetailOfTheServicePurchased609 PRIMARY KEY (IdDetailOfTheServicePurchased) 
+)
